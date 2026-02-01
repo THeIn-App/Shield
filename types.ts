@@ -1,10 +1,13 @@
 
+export type TierType = 'TRIAL' | 'STUDENT' | 'PRO' | 'ENTERPRISE';
+
 export interface ShieldKey {
   id: string;
   name: string;
   shieldKey: string;
   rawKey: string;
-  penaltyRate: number;
+  tier: TierType;
+  penaltyMultiplier: number;
   usageCount: number;
   revenue: number;
   createdAt: number;
@@ -21,6 +24,7 @@ export interface PenaltyEvent {
   location: string;
   method: string;
   path: string;
+  tier: TierType;
 }
 
 export interface Stats {
@@ -28,4 +32,12 @@ export interface Stats {
   activeKeys: number;
   penaltiesApplied: number;
   blockedAttempts: number;
+}
+
+export interface TierConfig {
+  name: TierType;
+  price: number;
+  multiplier: number;
+  description: string;
+  features: string[];
 }
